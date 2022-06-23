@@ -1,4 +1,5 @@
 const notesListElement = $('#notesList');
+const notesElement = $('#notes');
 
 const getNotesList = async () => {
 	// get the data from the database in api
@@ -21,7 +22,30 @@ const handleCLick = async (event) => {
 	if (target.is('li[name="note-item"]')) {
 		const itemId = target.attr('data-id');
 		console.log('items id: ' + itemId);
+		const response = await fetch(`/api/items/${itemId}`);
+
+		const item = await response.json();
+		renderItem(item);
 	}
+};
+const renderItem = (item) => {
+	console.log('asomsfn');
+	const noteContainer = $('#notes-container');
+	noteContainer.remove();
+	notesElement.append(`<div class="col-8" id="notes">
+	<div id="notes-container">
+		<input
+			class="note-title"
+			placeholder="${item.noteTitle}"
+			maxlength="28"
+			type="text"
+		/>
+		<textarea
+			class="note-textarea"
+			placeholder="${item.noteText}"
+		></textarea>
+	</div>
+</div>`);
 };
 
 const renderListItems = (items) => {
