@@ -25,7 +25,12 @@
 		<nav class="navbar navbar-dark bg-dark">
 			<a class="navbar-brand" href="/index.html">Note Taker </a>
 			<div class="icons">
-				<i class="fas fa-save text-light save-note" id="save-note"></i>
+				<i
+					type="submit"
+					form="my-form"
+					class="fas fa-save text-light save-note"
+					id="save-note"
+				></i>
 				<i class="fas fa-plus text-light new-note" id="new-note"></i>
 			</div>
 		</nav>
@@ -43,10 +48,12 @@
 							placeholder="Note Title"
 							maxlength="28"
 							type="text"
+							id="noteNameInput"
 						/>
 						<textarea
 							class="note-textarea"
 							placeholder="Note Text"
+							id="noteTextInput"
 						></textarea>
 					</div>
 				</div>

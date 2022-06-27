@@ -54,6 +54,7 @@ const createItem = (req, res) => {
 	const item = {
 		id,
 		name,
+		noteText,
 	};
 
 	// get all items from file

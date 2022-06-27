@@ -28,7 +28,7 @@ const handleCLick = async (event) => {
 			},
 		});
 		await response.json();
-		renderListItems(items);
+		window.location.assign('/notes');
 	}
 	if (target.is('li[name="note-item"]')) {
 		// identify the item clicked by getting item id
@@ -42,7 +42,38 @@ const handleCLick = async (event) => {
 		renderItem(item);
 	}
 };
-const handleSaveClick = async () => {};
+const handleSaveClick = async (event) => {
+	event.preventDefault();
+	let noteTitleInput = $('#noteNameInput');
+	let noteTextInput = $('#noteTextInput');
+
+	const name = noteTitleInput.val();
+	const noteText = noteTextInput.val();
+
+	if (!name) {
+		console.log('handle error');
+	} else {
+		// create POST request payload
+		const payload = {
+			name: name,
+			noteText: noteText,
+		};
+		console.log(payload);
+
+		// make a POST request to /api/items
+		const response = await fetch('/api/items', {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		await response.json();
+
+		window.location.assign('/notes');
+	}
+};
 const renderItem = (item) => {
 	const noteContainer = $('#notes-container');
 	noteContainer.remove();
@@ -50,7 +81,7 @@ const renderItem = (item) => {
 	<div id="notes-container">
 		<input
 			class="note-title"
-			placeholder="${item.noteTitle}"
+			placeholder="${item.name}"
 			maxlength="28"
 			type="text"
 			id="noteTitle"
@@ -97,14 +128,16 @@ const getNewNote = async () => {
 			placeholder="Note Title"
 			maxlength="28"
 			type="text"
-			id="noteTitle"
+			id="noteNameInput"
 		/>
 		<textarea
 			class="note-textarea"
 			placeholder="Note Text"
+			id="noteTextInput"
 		></textarea>
 	</div>
 </div>`);
+	$(saveButton).click(handleSaveClick);
 };
 
 const onReady = async () => {
