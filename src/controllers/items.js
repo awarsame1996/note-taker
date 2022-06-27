@@ -45,7 +45,7 @@ const deleteItem = (req, res) => {
 const createItem = (req, res) => {
 	console.log(req.body);
 	// get the payload from req body
-	const { name } = req.body;
+	const { name, noteText } = req.body;
 
 	// create uuid
 	const id = uuidv4();

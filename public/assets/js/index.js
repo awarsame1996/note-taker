@@ -28,7 +28,8 @@ const handleCLick = async (event) => {
 			},
 		});
 		await response.json();
-		window.location.assign('/notes');
+		const { items } = await getNotesList();
+		renderListItems(items);
 	}
 	if (target.is('li[name="note-item"]')) {
 		// identify the item clicked by getting item id
@@ -71,7 +72,8 @@ const handleSaveClick = async (event) => {
 
 		await response.json();
 
-		window.location.assign('/notes');
+		const { items } = await getNotesList();
+		renderListItems(items);
 	}
 };
 const renderItem = (item) => {
