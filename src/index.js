@@ -5,7 +5,8 @@ const express = require('express');
 
 const routes = require('./routes/');
 
-const PORT = 4000;
+// declare a port to connect my server
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 app.use(express.json());
