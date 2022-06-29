@@ -27,11 +27,7 @@ npm run dev
 
 # Heroku Deployed Link
 
-[heroku link]()
-
-## Video WalkThrough
-
-[]()
+[heroku link](https://awarsame-note-taker-app.herokuapp.com/)
 
 ## Technology Used
 
